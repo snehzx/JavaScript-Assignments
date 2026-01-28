@@ -21,7 +21,24 @@
   - `npm run test-compressString`
 */
 function compression(str) {
-  // Your code here
+  let res = [];
+  let count = 1;
+  for (let i = 1; i < str.length; i++) {
+    if (str[i] === str[i - 1]) {
+      count++;
+    } else {
+      res.push(str[i - 1]);
+      if (count > 1) {
+        res.push(count);
+      }
+      count = 1;
+    }
+  }
+  res.push(str[str.length - 1]);
+  if (count > 1) {
+    res.push(count);
+  }
+  return res.join("");
 }
 
 module.exports = compression;

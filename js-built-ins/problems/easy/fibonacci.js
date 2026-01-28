@@ -36,17 +36,29 @@
   - `npm run test-fibonacci`
 */
 
-
 // Iterative Fibonacci function
 function fibonacci(n) {
-  // Your code here
+  let res = [];
+  let a = 0;
+  let b = 1;
+  for (let i = 0; i < n; i++) {
+    res.push(a);
+    let temp = a;
+    a = b;
+    b = temp + b;
+  }
+  return res;
 }
 
 // Recursive Fibonacci function
 function fibonacciRecursive(n) {
-  // Your code here
+  if (n == 1) {
+    return 1;
+  }
+  if (n == 0) {
+    return 0;
+  }
+  return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
 }
 
 module.exports = { fibonacci, fibonacciRecursive };
-
-

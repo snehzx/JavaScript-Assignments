@@ -21,6 +21,8 @@
   - `npm run test-nonrepeat`
 */
 function nonrepeat(str) {
-  // Your code here
+  str = str.split("");
+  str = str.filter((ele) => str.indexOf(ele) === str.lastIndexOf(ele));
+  return str.length > 0 ? str[0] : null;
 }
 module.exports = nonrepeat;

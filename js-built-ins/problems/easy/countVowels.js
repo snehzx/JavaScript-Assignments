@@ -26,10 +26,28 @@
 */
 
 function countVowels(str) {
-  // Your code here
+  let vowel = "AEIOUaeiou";
+  let count = 0;
+  for (char of str) {
+    if (vowel.includes(char)) {
+      count++;
+    }
+  }
+  return count;
 }
 
 module.exports = { countVowels };
 
+/*
+function countVowels(str) {
+  const vowels = new Set("AEIOUaeiou");
+  let count = 0;
 
-
+  for (let char of str) {
+    if (vowels.has(char)) {
+      count++;
+    }
+  }
+  return count;
+}
+*/
