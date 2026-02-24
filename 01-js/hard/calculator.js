@@ -17,6 +17,50 @@
   - `npm run test-calculator`
 */
 
-class Calculator { }
+class Calculator {
+  constructor() {
+    this.result = 0;
+  }
+  add(num) {
+    this.result += num;
+  }
+  subtract(num) {
+    this.result -= num;
+  }
+  multiply(num) {
+    this.result *= num;
+  }
+  divide(num) {
+    if (num === 0) {
+      throw new Error("cannot divide by zero");
+    }
+    this.result /= num;
+  }
+  clear() {
+    this.result = 0;
+  }
+  getResult() {
+    return this.result;
+  }
+  calculate(str) {
+    const exp = str.replace(/\s+/g, "");
+    if (!/^[0-9+\-*/().]+$/.test(exp)) {
+      throw new Error("Invalid");
+    }
+    let ans;
+    try {
+      ans = Function(`"use strict" ; return(${exp})`)();
+      //use strict - prevents accidental global var, doesnt allow certain unsafe js behaviours , make err throw properly;
+      //Function()- built-in JavaScript constructor that creates new functions from strings
+    } catch (err) {
+      throw new Error("not a valid exp");
+    }
+    if (!isFinite(ans)) {
+      throw new Error("cannot divide by zero");
+    }
+    this.result = ans;
+    return this.result;
+  }
+}
 
 module.exports = Calculator;

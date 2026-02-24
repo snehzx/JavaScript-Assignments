@@ -6,19 +6,34 @@
  */
 
 function wait1(t) {
-
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, t * 1000);
+  });
 }
 
 function wait2(t) {
-
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, t * 1000);
+  });
 }
 
 function wait3(t) {
-
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, t * 1000);
+  });
 }
 
 function calculateTime(t1, t2, t3) {
-
+  const strt = Date.now();
+  function order() {
+    return wait1(t1)
+      .then(() => wait2(t2))
+      .then(() => wait3(t3));
+  }
+  return new Promise((resolve, reject) => {
+    order().then(() => resolve(Date.now() - strt));
+  });
 }
+// this will take more time then promise.all
 
 module.exports = calculateTime;
